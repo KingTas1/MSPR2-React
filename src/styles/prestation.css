@@ -178,7 +178,6 @@ h2 {
 }
 
 .modal {
-    display: none;
     position: fixed;
     z-index: 99;
     left: 0;

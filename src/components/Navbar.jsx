@@ -39,10 +39,10 @@ export default function Navbar() {
                     <ul className={`nav__list ${open ? 'is-open' : ''}`}>
                         <li><NavLink to="/" className="nav__link" onClick={close}>Accueil</NavLink></li>
                         <li><NavLink to="/AboutUs" className="nav__link" onClick={close}>Qui sommes-nous ?</NavLink></li>
-                        <li><NavLink to="/prestations" className="nav__link" onClick={close}>Nos Prestations</NavLink></li>
+                        <li><NavLink to="/Prestation" className="nav__link" onClick={close}>Nos Prestations</NavLink></li>
                         <li><NavLink to="/tarifs" className="nav__link" onClick={close}>Nos tarifs</NavLink></li>
                         <li><NavLink to="/contact" className="nav__link" onClick={close}>Contactez-nous</NavLink></li>
-                        <li><NavLink to="/rdv" className="nav__link" onClick={close}>Prendre Rendez-vous</NavLink></li>
+                        <li><NavLink to="/rdv" className="nav__link" onClick={close}>Prendre rendez-vous</NavLink></li>
                     </ul>
                 </div>
             </nav>

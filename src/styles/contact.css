@@ -140,8 +140,9 @@ h2 {
     text-align: center;
 }
 .main-title p {
-    margin-top: 20px;
-    font-size: 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
     font-family: "Lato";
     color: rgb(97, 97, 97);
 }
@@ -160,6 +161,14 @@ h2 {
   font-family: 'Poppins', sans-serif;
 }
 
+.findme {
+    color: black;
+}
+
+.form-container {
+    font-size: 15px;
+}
+
 .contact-form input,
 .contact-form textarea {
   display: block;
@@ -168,7 +177,7 @@ h2 {
   padding: 10px;
   border-radius: 4px;
   border: none;
-  font-size: 1rem;
+  font-size: 10px;
 }
 
 .contact-form label {
@@ -207,6 +216,10 @@ h2 {
   font-size: 1.5rem;
   margin-bottom: 20px;
   text-align: center;
+}
+
+@media (min-width: 1160px) {
+    
 }
 
 /* Footer Section */
