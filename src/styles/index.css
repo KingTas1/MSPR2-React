@@ -341,7 +341,7 @@ h2 {
 }
 
 .main-title {
-  padding-top: 30px;
+  padding-top: 10px;
   text-transform: uppercase;
   text-align: center;
   font-size: 50px;
@@ -389,7 +389,7 @@ h2 {
 .main-slider {
   max-width: 600px;
   height: 400px;
-  margin: 50px auto 0;
+  margin: 20px auto 0;
   position: relative;
 }
 .slide-img {

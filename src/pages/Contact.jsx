@@ -77,7 +77,7 @@ export default function Contact() {
         <Navbar />
       </header>
 
-      <main className="main-container">
+      <main className="main-container contact-layout page-with-fixed-nav">
         <div className="main-title">
           <h2 className="contact-title">
             Contactez-nous pour un devis, une intervention ou un renseignement
