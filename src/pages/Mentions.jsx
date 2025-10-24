@@ -1,0 +1,112 @@
+import styles from "../styles/Mentions.module.css";
+
+export default function Mentions() {
+  return (
+    <div className={styles.page}>
+      <div className={styles.wrapper}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>Mentions légales / CGV / CGU</h1>
+        </header>
+
+        <main className={styles.main}>
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>1. Informations légales</h2>
+            <p>
+              <strong>Nom de l'entreprise :</strong> Canopées
+            </p>
+            <p>
+              <strong>Statut :</strong> Auto-entreprise
+            </p>
+            <p>
+              <strong>Siège social :</strong> 12 rue des Lilas, 69000 Lyon,
+              France
+            </p>
+            <p>
+              <strong>SIRET :</strong> 123 456 789 00012
+            </p>
+            <p>
+              <strong>Email :</strong> contact@canopees.fr
+            </p>
+            <p>
+              <strong>Responsable de la publication :</strong> Thomas Lefèvre et
+              Bob Martin
+            </p>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>2. Hébergement</h2>
+            <p>
+              Le site est hébergé par OVH - 2 rue Kellermann, 59100 Roubaix -
+              France
+            </p>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              3. Conditions Générales d'Utilisation (CGU)
+            </h2>
+            <p>
+              En accédant au site www.canopees.fr, l'utilisateur accepte
+              pleinement et entièrement les conditions générales d'utilisation
+              ci-après décrites. Ces conditions sont susceptibles d'être
+              modifiées ou complétées à tout moment.
+            </p>
+            <p>
+              L'utilisateur s'engage à ne pas perturber l'accès au site, ni à
+              interférer avec son bon fonctionnement ou à tenter d'y accéder
+              sans autorisation.
+            </p>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              4. Conditions Générales de Vente (CGV)
+            </h2>
+            <p>
+              Les prestations proposées par Canopées sont soumises aux présentes
+              CGV.
+            </p>
+            <ul className={styles.list}>
+              <li className={styles.listItem}>
+                Les devis sont gratuits et sans engagement.
+              </li>
+              <li className={styles.listItem}>
+                Le paiement s'effectue selon les modalités précisées dans le
+                devis.
+              </li>
+              <li className={styles.listItem}>
+                Toute annulation de prestation devra être signalée au minimum
+                48h à l'avance.
+              </li>
+              <li className={styles.listItem}>
+                Canopées s'engage à fournir un travail soigné, dans le respect
+                des normes environnementales et de sécurité.
+              </li>
+            </ul>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>5. Données personnelles</h2>
+            <p>
+              Les informations collectées via les formulaires du site sont
+              strictement confidentielles et ne seront jamais revendues.
+              Conformément à la loi « Informatique et Libertés », vous pouvez
+              exercer votre droit d'accès, de modification ou de suppression de
+              vos données en écrivant à contact@canopees.fr.
+            </p>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>6. Propriété intellectuelle</h2>
+            <p>
+              L'ensemble du contenu du site www.canopees.fr (textes, images,
+              logos, etc.) est protégé par les droits de propriété
+              intellectuelle. Toute reproduction ou exploitation sans
+              autorisation est interdite.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+  );
+}
