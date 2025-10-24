@@ -38,7 +38,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main>
+      <main className='home-main'>
         <div className="main-container">
           <h2 className="main-title">Canopées - Créateur d'espaces verts durables</h2>
           <p className="main-p">

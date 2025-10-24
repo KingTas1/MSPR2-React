@@ -639,7 +639,7 @@ h2 {
 .contact-btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #1c4e80; /* Bleu élégant */
+  background-color: #1c4e80;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -727,3 +727,5 @@ html, body { margin:0; padding:0; }
   main{ margin-top:0 !important; }  
   .header-nav, .nav__container{ border-bottom:0 !important; }
 }
+
+.home-main { padding-top: 0 !important; }

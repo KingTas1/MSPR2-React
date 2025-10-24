@@ -11,7 +11,7 @@ export default function AboutUs() {
         <Navbar />
       </header>
 
-      <main>
+      <main className="about-main">
         <div className="title-container">
           <h2 className="main-title">
             Quand les arbres rencontrent les Humains
