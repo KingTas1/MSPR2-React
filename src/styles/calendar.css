@@ -420,3 +420,47 @@ footer {
     text-decoration: none;
     color: #d5edda;
 }
+
+/* 1) Backdrop centré + petite marge intérieure pour éviter les bords collés */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;             /* <— important sur petits écrans */
+  z-index: 2000;
+  transition: opacity .25s ease;
+  opacity: 0;
+}
+.modal-backdrop.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* 2) La boîte modale suit son contenu, bornée en largeur/hauteur */
+.modal {
+  position: relative;
+  background: linear-gradient(180deg, #fff, #fbfbfb);
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 20px 50px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+  overflow: auto;            /* <— scroll interne si contenu long */
+  padding: 20px 24px;
+
+  width: auto;               /* <— clé : pas 100%/vw */
+  max-width: 560px;          /* borne desktop */
+  max-height: 90vh;          /* ne dépasse jamais l’écran */
+  animation: fadeInUp .25s ease;
+}
+
+/* Option mobile : on garde un peu de respiration mais sans plein écran */
+@media (max-width: 640px) {
+  .modal {
+    max-width: 92vw;
+  }
+}
+
+/* Petit confort visuel */
+.modal h3 { margin-top: 0; }

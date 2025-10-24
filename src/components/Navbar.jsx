@@ -1,50 +1,63 @@
-import { NavLink, Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../assets/img/logo-canopees-removebg-preview.png'
 import hamburger from '../assets/logos/hamburger.svg'
-import closeIcon from '../assets/logos/close.svg'
+import close from '../assets/logos/close.svg'
+import '../styles/index.css'
+import '../styles/navbar.css'
 
 export default function Navbar() {
-    const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
-    const toggle = () => setOpen(o => !o)
-    const close = () => setOpen(false)
+  const toggleMenu = () => setMenuOpen(!menuOpen)
 
-    return (
-            <nav className={`header-nav ${open ? 'header-nav--active' : ''}`}>
-                <div className='nav__container'>
-                    <div className='nav__logo'>
-                        <Link to="/">
-                            <button className='nav__button-logo' aria-label="Accueil">
-                                <img 
-                                    src={logo} 
-                                    alt="logo entreprise Canopées" 
-                                    width="140"
-                                    height="30"
-                                 />
-                            </button>
-                        </Link>
-                    </div>
+  useEffect(() => {
+    const el = document.querySelector('.header-nav')
+    const apply = () => {
+      if (!el) return
+      const h = Math.round(el.getBoundingClientRect().height)
+      document.documentElement.classList.add('has-fixed-nav')
+      document.documentElement.style.setProperty('--nav-h', h + 'px')
+    }
+    apply()
+    const ro = new ResizeObserver(apply)
+    if (el) ro.observe(el)
+    window.addEventListener('resize', apply)
+    return () => {
+      window.removeEventListener('resize', apply)
+      ro.disconnect()
+    }
+  }, [])
 
-                    <button className='nav__toggle-button' onClick={toggle} aria-label="Menu">
-                        <img 
-                            src={open ? closeIcon : hamburger}
-                            alt={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-                            className='nav__toggle-button' 
-                            width="30" 
-                            height="30" 
-                        />
-                    </button>
+  return (
+    <nav className={`header-nav ${menuOpen ? 'header-nav--active' : ''}`}>
+      <div className="nav__container">
+        <div className="nav__logo">
+          <Link to="/">
+            <button className="nav__button-logo">
+              <img src={logo} alt="logo Canopées" width="140" height="30" />
+            </button>
+          </Link>
+        </div>
 
-                    <ul className={`nav__list ${open ? 'is-open' : ''}`}>
-                        <li><NavLink to="/" className="nav__link" onClick={close}>Accueil</NavLink></li>
-                        <li><NavLink to="/AboutUs" className="nav__link" onClick={close}>Qui sommes-nous ?</NavLink></li>
-                        <li><NavLink to="/Prestation" className="nav__link" onClick={close}>Nos Prestations</NavLink></li>
-                        <li><NavLink to="/tarifs" className="nav__link" onClick={close}>Nos tarifs</NavLink></li>
-                        <li><NavLink to="/contact" className="nav__link" onClick={close}>Contactez-nous</NavLink></li>
-                        <li><NavLink to="/rdv" className="nav__link" onClick={close}>Prendre rendez-vous</NavLink></li>
-                    </ul>
-                </div>
-            </nav>
-    )
+        <button className="nav__toggle-button" onClick={toggleMenu}>
+          <img
+            src={menuOpen ? close : hamburger}
+            alt="menu"
+            width="30"
+            height="30"
+          />
+        </button>
+
+        <ul className={`nav__list ${menuOpen ? 'is-open' : ''}`}>
+          <li><Link to="/" className="nav__link">Accueil</Link></li>
+          <li><Link to="/AboutUs" className="nav__link">Qui sommes-nous ?</Link></li>
+          <li><Link to="/Prestation" className="nav__link">Nos prestations</Link></li>
+          <li><Link to="/Tarifs" className="nav__link">Nos tarifs</Link></li>
+          <li><Link to="/Contact" className="nav__link">Contactez-nous</Link></li>
+          <li><Link to="/Calendar" className="nav__link">Prendre Rendez-vous</Link></li>
+        </ul>
+      </div>
+    </nav>
+  )
 }
