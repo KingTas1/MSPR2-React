@@ -204,10 +204,11 @@ export default function CalendarPage() {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), 15000);
 
+      // ==== ICI: headers et Accept en application/ld+json ====
       const res = await fetch("/api/events", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/ld+json",
           Accept: "application/ld+json",
         },
         body: JSON.stringify(payload),

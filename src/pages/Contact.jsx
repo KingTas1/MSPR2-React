@@ -22,7 +22,7 @@ export default function Contact() {
 
     const nextErrors = {};
     if (!nom) nextErrors.nom = "Le nom est requis.";
-    if (!email) nextErrors.email = "L’email est requis.";
+    if (!email) nextErrors.email = "L'email est requis.";
     else if (!/^\S+@\S+\.\S+$/.test(email))
       nextErrors.email = "Email invalide.";
     if (phone && !/^[0-9+().\s-]{6,}$/.test(phone))
