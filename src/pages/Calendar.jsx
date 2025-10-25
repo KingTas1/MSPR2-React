@@ -6,9 +6,6 @@ import interactionPlugin from "@fullcalendar/interaction";
 import frLocale from "@fullcalendar/core/locales/fr";
 import Navbar from "../components/Navbar.jsx";
 import "../styles/calendar.css";
-import '@fullcalendar/core/index.css'
-import '@fullcalendar/daygrid/index.css'
-import '@fullcalendar/timegrid/index.css'
 
 const pad = (n) => String(n).padStart(2, "0");
 const toLocalISOWithTZ = (date) => {
