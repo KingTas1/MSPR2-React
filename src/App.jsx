@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter,Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import AboutUs from './pages/AboutUs.jsx'
 import Prestation from './pages/Prestation.jsx'
@@ -7,6 +7,14 @@ import Contact from './pages/Contact.jsx'
 import CalendarPage from './pages/Calendar.jsx'
 import Mentions from './pages/Mentions.jsx'
 import Footer from './components/Footer.jsx'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 
 export default function App() {
   return (

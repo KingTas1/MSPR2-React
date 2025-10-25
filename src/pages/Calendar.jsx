@@ -6,6 +6,9 @@ import interactionPlugin from "@fullcalendar/interaction";
 import frLocale from "@fullcalendar/core/locales/fr";
 import Navbar from "../components/Navbar.jsx";
 import "../styles/calendar.css";
+import '@fullcalendar/core/index.css'
+import '@fullcalendar/daygrid/index.css'
+import '@fullcalendar/timegrid/index.css'
 
 const pad = (n) => String(n).padStart(2, "0");
 const toLocalISOWithTZ = (date) => {
@@ -134,8 +137,7 @@ export default function CalendarPage() {
         }
         if (
           !arg.allDay &&
-          (api?.view.type === "timeGridDay" ||
-            api?.view.type === "timeGridWeek")
+          (api?.view.type === "timeGridDay" || api?.view.type === "timeGridWeek")
         ) {
           const startISO = arg.dateStr;
           const d = new Date(arg.date);
@@ -173,7 +175,7 @@ export default function CalendarPage() {
     if (!end || slot.start === end) {
       const d = new Date(slot.start);
       d.setMinutes(d.getMinutes() + 30);
-      end = d.toISOString();
+      end = toLocalISOWithTZ(d);
     }
 
     const payload = {
@@ -193,10 +195,7 @@ export default function CalendarPage() {
 
     const api = calRef.current?.getApi();
 
-    setBusyRanges((prev) => [
-      ...prev,
-      { start: payload.start, end: payload.end },
-    ]);
+    setBusyRanges((prev) => [...prev, { start: payload.start, end: payload.end }]);
     const optimistic = api?.addEvent({
       start: payload.start,
       end: payload.end,
@@ -222,13 +221,20 @@ export default function CalendarPage() {
 
       clearTimeout(timer);
 
+      if (res.status === 409) {
+        if (optimistic) optimistic.remove();
+        setBusyRanges((prev) =>
+          prev.filter((r) => !(r.start === payload.start && r.end === payload.end))
+        );
+        showToast("Créneau déjà occupé (serveur)");
+        return;
+      }
+
       if (!res.ok) {
         const txt = await res.text();
         try {
           const j = JSON.parse(txt);
-          throw new Error(
-            j["hydra:description"] || j.detail || "Erreur serveur"
-          );
+          throw new Error(j["hydra:description"] || j.detail || "Erreur serveur");
         } catch {
           throw new Error(txt.slice(0, 500) || "Erreur serveur");
         }
@@ -240,9 +246,7 @@ export default function CalendarPage() {
     } catch (err) {
       if (optimistic) optimistic.remove();
       setBusyRanges((prev) =>
-        prev.filter(
-          (r) => !(r.start === payload.start && r.end === payload.end)
-        )
+        prev.filter((r) => !(r.start === payload.start && r.end === payload.end))
       );
       showToast("Échec: " + err.message);
     } finally {
@@ -255,6 +259,12 @@ export default function CalendarPage() {
       calRef.current?.getApi()?.refetchEvents();
     }, 30000);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const onFocus = () => calRef.current?.getApi()?.refetchEvents();
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
   }, []);
 
   return (
